@@ -2513,6 +2513,8 @@ class PreTrainedTokenizerBase(SpecialTokensMixin):
             **kwargs,
         )
 
+        kwargs.pop('src_lang', None)  # NB: Hack for seq2seq fine-tuning
+        kwargs.pop('tgt_lang', None)  # NB: Hack for seq2seq fine-tuning
         return self._batch_encode_plus(
             batch_text_or_text_pairs=batch_text_or_text_pairs,
             add_special_tokens=add_special_tokens,
